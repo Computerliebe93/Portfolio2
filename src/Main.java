@@ -1,11 +1,12 @@
-import java.util.Iterator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Main<SmallestItems> {
 
     public static void main(String[] args) {
         AdjacencyListGraph adjGraph = new AdjacencyListGraph();
 
+        // Vertex names
         Vertex A = new Vertex("Eskildsstrup");
         Vertex B = new Vertex("Haslev");
         Vertex C = new Vertex("Holbæk");
@@ -41,6 +42,7 @@ public class Main<SmallestItems> {
         adjGraph.addVertex(P);
 
 
+        // Edge values
         adjGraph.newEdge(A, H, 28);
         adjGraph.newEdge(A, L, 13);
         adjGraph.newEdge(A, M, 24);
@@ -83,18 +85,75 @@ public class Main<SmallestItems> {
         adjGraph.newEdge(I, O, 32);
         adjGraph.newEdge(I, M, 28);
         adjGraph.newEdge(J, N, 31);
+
         adjGraph.newEdge(J, O, 15);
         adjGraph.newEdge(J, M, 58);
         adjGraph.newEdge(K, O, 14);
 
+
+        // Print methods
         adjGraph.printGraph();
 
         int mst = adjGraph.prims();
+
+        System.out.println("Minimum spanning tree: ");
         adjGraph.PrintMST();
-        System.out.println(mst + "Km * 1000000 = " + mst * 1000000);
+
+        System.out.println("Total cost of electricity grid: " + mst + "Km * 1000000 = " + mst * 1000000 + "Kr");
+        System.out.println();
+
+
+        // Priority queue for smallest items
+        Queue<Integer> smallestPQ = new PriorityQueue<Integer>();
+        smallestPQ.add(28);
+        smallestPQ.add(13);
+        smallestPQ.add(24);
+        smallestPQ.add(60);
+        smallestPQ.add(24);
+        smallestPQ.add(25);
+        smallestPQ.add(19);
+        smallestPQ.add(47);
+        smallestPQ.add(48);
+        smallestPQ.add(34);
+        smallestPQ.add(40);
+        smallestPQ.add(34);
+        smallestPQ.add(44);
+        smallestPQ.add(66);
+        smallestPQ.add(36);
+        smallestPQ.add(32);
+        smallestPQ.add(46);
+        smallestPQ.add(34);
+        smallestPQ.add(95);
+        smallestPQ.add(58);
+        smallestPQ.add(56);
+        smallestPQ.add(33);
+        smallestPQ.add(74);
+        smallestPQ.add(63);
+        smallestPQ.add(62);
+        smallestPQ.add(70);
+        smallestPQ.add(39);
+        smallestPQ.add(51);
+        smallestPQ.add(45);
+        smallestPQ.add(20);
+        smallestPQ.add(45);
+        smallestPQ.add(28);
+        smallestPQ.add(25);
+        smallestPQ.add(60);
+        smallestPQ.add(27);
+        smallestPQ.add(26);
+        smallestPQ.add(57);
+        smallestPQ.add(26);
+        smallestPQ.add(37);
+        smallestPQ.add(32);
+        smallestPQ.add(28);
+        smallestPQ.add(31);
+        smallestPQ.add(15);
+        smallestPQ.add(58);
+        smallestPQ.add(14);
+        
+        System.out.println("Smallest items: ");
+                            while (!smallestPQ.isEmpty()) {
+                            System.out.println(smallestPQ.poll());
+        }
     }
-
-
-
 }
-

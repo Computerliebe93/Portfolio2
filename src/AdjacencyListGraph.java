@@ -1,29 +1,28 @@
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.Stack;
+import java.util.*;
 
 public class AdjacencyListGraph {
     private ArrayList<Vertex> vertices;
 
+    // Adjacency list graph
     public AdjacencyListGraph(){
         vertices = new ArrayList<>();
     }
     public void addVertex(Vertex v){
         vertices.add(v);
     }
-    public void newEdge(Vertex from, Vertex to, Integer dist){
+    public Integer newEdge(Vertex from, Vertex to, Integer dist){
         if (! (vertices.contains(from) && vertices.contains(to)))
         {
             System.out.println("Vertex not found");
-            return;
+            return null;
         }
         Edge newEdge = new Edge(from, to, dist);
         Edge newEdge2 = new Edge(to, from, dist);
 
+        return null;
     }
 
+    // Print grpah method
     public void printGraph(){
         Vertex currentV;
         for (int i = 0; i < vertices.size(); i++){
@@ -37,6 +36,8 @@ public class AdjacencyListGraph {
             System.out.println(" ");
         }
     }
+
+    // Print minimum spanning tree method
     public void PrintMST(){
         for (int i = 0; i < vertices.size(); i++){
             if (vertices.get(i).pred != null)
@@ -45,16 +46,14 @@ public class AdjacencyListGraph {
         }
         System.out.println();
     }
+
+    // Prims algorithm method
     public int prims (){
         PriorityQueue<Vertex> Q = new PriorityQueue<Vertex>();
-       /* Arrays.fill(distance, Integer.MAX_VALUE);
-        Arrays.fill(predecessor, -1);
-        Arrays.fill(visited, 0); laves i for loop */
         if (vertices.size() > 0) {
             vertices.get(0).distance = 0;
             Q.offer(vertices.get(0));
         }
-
         int counter = 0;
         int mst = 0;
         while (!Q.isEmpty() && counter < vertices.size()) {
@@ -74,10 +73,16 @@ public class AdjacencyListGraph {
         }
         return mst;
     }
-    
+    private static void SmallestItems() {
+        Queue<Integer> smallestPQ = new PriorityQueue<Integer>();
+        smallestPQ.add(2);
+        smallestPQ.add(5);
+        smallestPQ.add(1);
+    }
 }
 
-class Vertex implements Comparable<Vertex>{ //knuden
+// Vertex class with getters for vertices
+class Vertex implements Comparable<Vertex>{
     private String Name;
     private ArrayList<Edge> outEdges;
     Vertex pred = null;
@@ -128,6 +133,7 @@ class Vertex implements Comparable<Vertex>{ //knuden
     }
 }
 
+// Edge class with getters for edges
 class Edge {
     private Vertex fromVertex;
     private Vertex toVertex;
